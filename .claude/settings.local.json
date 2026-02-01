@@ -5,7 +5,12 @@
       "Bash(pnpm install:*)",
       "Bash(pnpm build:*)",
       "Bash(node:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(for dir in \"/Users/argtobias\" \"/Users/argtobias/Documents\" \"/Users/argtobias/Downloads\" \"/Users/argtobias/test-files-organized\" \"/Users/argtobias/first-mcp\" \"/tmp\")",
+      "Bash(do echo \"=== $dir ===\" echo '{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"method\"\":\"\"tools/call\"\",\"\"params\"\":{\"\"name\"\":\"\"list_directory\"\",\"\"arguments\"\":{\"\"path\"\":\"\"'$dir'\"\"}},\"\"id\"\":1}')",
+      "Bash(# Primero elimino el duplicado2 incorrecto echo ''{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"method\"\":\"\"tools/call\"\",\"\"params\"\":{\"\"name\"\":\"\"delete_file\"\",\"\"arguments\"\":{\"\"path\"\":\"\"/Users/argtobias/Archivos ordenados/TXT/duplicado2.txt\"\"}},\"\"id\"\":1}'' | node /Users/argtobias/first-mcp/dist/index.js)",
+      "Bash(# Leo el contenido como base64 echo ''{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"method\"\":\"\"tools/call\"\",\"\"params\"\":{\"\"name\"\":\"\"read_file\"\",\"\"arguments\"\":{\"\"path\"\":\"\"/Users/argtobias/Archivos ordenados/TXT/duplicado1.txt\"\",\"\"encoding\"\":\"\"base64\"\"}},\"\"id\"\":1}'' | node /Users/argtobias/first-mcp/dist/index.js)",
+      "Bash(npm run build:*)"
     ]
   }
 }

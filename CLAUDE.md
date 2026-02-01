@@ -1,10 +1,10 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-This is an MCP (Model Context Protocol) server for local file management. It provides tools for reading, writing, analyzing, searching, and organizing files without external API dependencies.
+MCP (Model Context Protocol) server for local file management with safety protections. Designed to be used with Claude Desktop or other MCP-compatible clients.
 
 ## Commands
 
@@ -18,47 +18,58 @@ pnpm build
 # Run the MCP server
 pnpm start
 
-# Development mode (watch for changes)
+# Development mode (watch)
 pnpm dev
-```
-
-## Testing
-
-```bash
-# Test that tools are registered correctly
-echo '{"jsonrpc":"2.0","method":"tools/list","id":1}' | node dist/index.js
 ```
 
 ## Architecture
 
 ```
 src/
-├── index.ts          # Entry point - McpServer setup and tool registration
+├── index.ts              # Entry point - McpServer setup
 ├── tools/
-│   ├── read.ts       # read_file tool
-│   ├── write.ts      # write_file tool
-│   ├── analyze.ts    # analyze_file tool
-│   ├── organize.ts   # move_file, rename_files, organize_by_type tools
-│   └── search.ts     # list_directory, search_content, find_duplicates, sort_file_content tools
+│   ├── read.ts           # read_file
+│   ├── write.ts          # write_file (utf8/base64)
+│   ├── analyze.ts        # analyze_file
+│   ├── organize.ts       # move_file, rename_files, organize_by_type, delete_file, delete_directory
+│   └── search.ts         # list_directory, search_content, find_duplicates, sort_file_content
 └── utils/
-    └── files.ts      # Shared utilities (hash, mime, stats, formatting)
+    ├── files.ts          # File utilities (hash, mime, stats)
+    ├── config.ts         # Configuration loader (paths, protection rules)
+    └── safety.ts         # Safety validations for delete operations
 ```
 
-## Available Tools
+## Configuration
+
+User config location: `~/.config/fso/config.json`
+
+```json
+{
+  "allowedPaths": ["~/projects", "/tmp"],
+  "additionalProtectedPaths": [],
+  "additionalProtectedPatterns": []
+}
+```
+
+## Available Tools (12)
 
 1. **read_file** - Read file contents (UTF-8 or base64)
-2. **write_file** - Write/append content to files
-3. **list_directory** - List files with optional recursion and glob patterns
-4. **analyze_file** - Get file stats (size, MIME type, lines, words, dates)
-5. **search_content** - Search for regex patterns in files
-6. **find_duplicates** - Find duplicate files by MD5 hash
-7. **move_file** - Move files between locations
-8. **rename_files** - Batch rename files with regex patterns
-9. **organize_by_type** - Organize files into folders by extension/date/size
-10. **sort_file_content** - Sort file lines (asc/desc, numeric, unique)
+2. **write_file** - Write content (UTF-8 or base64)
+3. **list_directory** - List with recursion and glob patterns
+4. **analyze_file** - Stats: size, MIME, lines, words, dates
+5. **search_content** - Regex search with context
+6. **find_duplicates** - MD5 hash comparison
+7. **move_file** - Move with optional cleanup
+8. **rename_files** - Batch rename with regex
+9. **organize_by_type** - Organize by extension/date/size
+10. **sort_file_content** - Sort lines
+11. **delete_file** - Safe delete with preview
+12. **delete_directory** - Safe delete with confirmation
 
-## Key SDK imports
+## Safety Features
 
-- `McpServer` - Main server class
-- `StdioServerTransport` - For stdio-based communication
-- `z` (zod) - Schema validation for tool parameters
+- Configurable allowed paths
+- System paths always protected
+- User sensitive paths protected
+- Preview mode for deletions
+- Recursive deletion requires confirmation

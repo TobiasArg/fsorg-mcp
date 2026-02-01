@@ -13,6 +13,10 @@ import {
   renameFilesTool,
   organizeByTypeSchema,
   organizeByTypeTool,
+  deleteFileSchema,
+  deleteFileTool,
+  deleteDirectorySchema,
+  deleteDirectoryTool,
 } from "./tools/organize.js";
 import {
   listDirectorySchema,
@@ -46,7 +50,7 @@ server.tool(
 // Tool: write_file
 server.tool(
   "write_file",
-  "Write content to a file. Can overwrite or append. Creates parent directories if needed.",
+  "Write content to a file. Supports UTF-8 or base64 encoding. Can overwrite or append. Creates parent directories if needed.",
   writeFileSchema.shape,
   async (args) => {
     const result = await writeFileTool(writeFileSchema.parse(args));
@@ -156,6 +160,32 @@ server.tool(
     const result = await sortFileContentTool(sortFileContentSchema.parse(args));
     return {
       content: [{ type: "text", text: result }],
+    };
+  }
+);
+
+// Tool: delete_file
+server.tool(
+  "delete_file",
+  "Safely delete a file with protection checks. Only works within allowed paths. Use preview=true to see what will be deleted first.",
+  deleteFileSchema.shape,
+  async (args) => {
+    const result = await deleteFileTool(deleteFileSchema.parse(args));
+    return {
+      content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+    };
+  }
+);
+
+// Tool: delete_directory
+server.tool(
+  "delete_directory",
+  "Safely delete a directory with protection checks. Only works within allowed paths. Recursive deletion requires confirmRecursive=true. Use preview=true to see what will be deleted first.",
+  deleteDirectorySchema.shape,
+  async (args) => {
+    const result = await deleteDirectoryTool(deleteDirectorySchema.parse(args));
+    return {
+      content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
     };
   }
 );

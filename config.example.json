@@ -1,0 +1,15 @@
+{
+  "allowedPaths": [
+    "~/projects",
+    "~/Development",
+    "~/workspace",
+    "/tmp"
+  ],
+  "additionalProtectedPaths": [
+    "~/my-important-folder"
+  ],
+  "additionalProtectedPatterns": [
+    "^backup",
+    "\\.bak$"
+  ]
+}

@@ -1,0 +1,20 @@
+# Source files
+src/
+
+# Config files
+tsconfig.json
+.gitignore
+CLAUDE.md
+PLAN.md
+
+# Development
+node_modules/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

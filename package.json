@@ -1,15 +1,38 @@
 {
-  "name": "first-mcp",
+  "name": "fso",
   "version": "1.0.0",
-  "description": "MCP server for local file management",
+  "description": "MCP server for local file management with safety protections",
   "license": "ISC",
-  "author": "",
+  "author": "argtobias",
   "type": "module",
   "main": "dist/index.js",
+  "bin": {
+    "fso": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "config.example.json",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "file-management",
+    "ai-tools"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/argtobias/local-files-mcp"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.3",
