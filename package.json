@@ -1,0 +1,25 @@
+{
+  "name": "first-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for local file management",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "glob": "^10.3.0",
+    "mime-types": "^2.1.35",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  }
+}
