@@ -41,7 +41,7 @@ src/
 
 ## Configuration
 
-User config location: `~/.config/fsorg/config.json`
+User config location: `~/.config/localfiles-org/config.json`
 
 ```json
 {

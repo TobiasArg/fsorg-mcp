@@ -27,7 +27,7 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "local-files": {
       "command": "npx",
-      "args": ["-y", "fsorg"]
+      "args": ["-y", "localfiles-org"]
     }
   }
 }
@@ -38,8 +38,8 @@ That's it! Claude Desktop will automatically download and run the MCP server via
 ### Alternative: Install from source
 
 ```bash
-git clone https://github.com/argtobias/fsorg.git
-cd fsorg
+git clone https://github.com/argtobias/localfiles-org.git
+cd localfiles-org
 pnpm install
 pnpm build
 ```
@@ -51,7 +51,7 @@ Then configure Claude Desktop:
   "mcpServers": {
     "local-files": {
       "command": "node",
-      "args": ["/path/to/fsorg/dist/index.js"]
+      "args": ["/path/to/localfiles-org/dist/index.js"]
     }
   }
 }
@@ -60,8 +60,8 @@ Then configure Claude Desktop:
 ### Safety Configuration
 
 Create a config file at:
-- **macOS/Linux**: `~/.config/fsorg/config.json`
-- **Windows**: `%LOCALAPPDATA%\fsorg\config.json`
+-- **macOS/Linux**: `~/.config/localfiles-org/config.json`
+-- **Windows**: `%LOCALAPPDATA%\localfiles-org\config.json`
 
 ```json
 {

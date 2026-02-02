@@ -1,5 +1,5 @@
 {
-  "name": "fsorg",
+  "name": "localfiles-org",
   "version": "1.0.0",
   "description": "MCP server for local file management with safety protections",
   "license": "ISC",
@@ -7,7 +7,7 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "fsorg": "dist/index.js"
+    "localfiles-org": "dist/index.js"
   },
   "files": [
     "dist",
