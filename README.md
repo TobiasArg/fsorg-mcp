@@ -63,6 +63,7 @@ Then configure Claude Desktop:
 
 Create a config file at:
 -- **macOS/Linux**: `~/.config/localfiles-org/config.json`
+
 -- **Windows**: `%LOCALAPPDATA%\localfiles-org\config.json`
 
 ```json
@@ -202,6 +203,7 @@ Create a config file at:
   Create user config at:
 
   - macOS/Linux: `~/.config/localfiles-org/config.json`
+    
   - Windows: `%LOCALAPPDATA%\\localfiles-org\\config.json`
 
   Minimal config example:
